@@ -4,7 +4,9 @@ import numpy as np
 # Parameters for binomial tree model
 
 rf = 0.0428  # annual risk-free interest rate 年化无风险收益率
-volatility = 0.3447  # annual volatility of the underlying asset 年化波动率
+temp = [0.3447,0.3535,0.3605,0.3675,0.385] #分别对应0 1 3 5 10%的波动率变化率，用于敏感性分析
+volatility = temp[0]  # annual volatility of the underlying asset 年化波动率
+#print(f"波动率变化率为{100*((volatility/0.35)-1):.0f}%")
 q = 0.008  # annaul dividend yield 年化股息收益率
 USD_HKD = 0.13 # exchange rate HKD to USD / 1港元兑换多少美元
 
@@ -13,17 +15,19 @@ S0 = 81.31 # initial stock price of Tencent, dollar , 2025-11-05
 K2 = [580,590,600,610,620,630,640,650,660,670,680]  # strike prices in HKD 内层期权执行价 港元
 K2 = [((k * USD_HKD) ** 1.5) for k in K2]  # strike prices in USD 内层期权执行价 美元
 #print(f"K2的值为{K2}")
-T_plus_C = pd.to_datetime("2026-05-26") #T_plus_C: 内层期权到期日
+temp = ["2026-05-26","2026-08-26","2026-11-26","2027-02-26"]
+T_plus_C = pd.to_datetime(temp[0]) #T_plus_C: 内层期权到期日
 T = pd.to_datetime("2026-2-25") #T: 外层期权到期日/内层期权开始日
 t = pd.to_datetime("2025-11-05") # t为当前日期 
 delta_inner = T_plus_C - T
 delta_outer = T - t
 delta_all = T_plus_C - t
-print("外层期权到期时间天数:", delta_outer.days)
-print("内层期权到期时间天数:", delta_inner.days)
+#print("外层期权到期时间天数:", delta_outer.days)
+#print("内层期权到期时间天数:", delta_inner.days)
 C = delta_all.days/365  # time to maturity in years, 3 months , 2026-02-26号到期 内层期权到期时间 年
 C_inner = delta_inner.days/365  
 C_outer = delta_outer.days/365  
+print(f"当前内层期权期限为{(delta_inner.days)/30:.0f}个月")
 #print("内层期权到期时间(年):", C_inner, "外层期权到期时间(年):", C_outer, "内外层期权总时间(年):", C)
 #===内层期权参数===
 
@@ -32,7 +36,6 @@ K1 = 70
 N1 = 1
 N2 = -1
 #===外层期权参数===
-
 
 #===二项式模型参数===
 M = 1000 # number of time steps 步数

@@ -13,3 +13,6 @@ mfe5130 2025奇异期权定价程序
     7. 计算外层期权的delta和gamma
     8. 计算隐含波动率
     9. 项目额外贡献
+脚本说明
+   1. 二叉树定价脚本 binominal_model.py
+   2. 蒙特卡洛模拟定价脚本 Monte_Carlo_model.py

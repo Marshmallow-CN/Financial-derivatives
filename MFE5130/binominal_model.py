@@ -51,5 +51,10 @@ def binominal_priceX(style):
     #===计算外层看涨期权价值矩阵===
     return priceX
 
-print(f"内层为欧式期权的X的二项式定价为:{binominal_priceX('European')}")
-print(f"内层为美式期权的X的二项式定价为:{binominal_priceX('American')}")
+a = binominal_priceX('European')
+b = binominal_priceX('American')
+print(f"内层为欧式期权的X的二项式定价为:{a}")
+print(f"内层为美式期权的X的二项式定价为:{b}")
+
+print(f"欧式期权的价格变化率为{100*(a/48.43 - 1):.2f}%")
+print(f"美式期权的价格变化率为{100*(b/51.18 - 1):.2f}%")
