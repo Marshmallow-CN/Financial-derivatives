@@ -4,7 +4,7 @@ import numpy as np
 from tqdm import tqdm
 from parameters import *
 from utils import *
-# MFE5130 2025 奇异期权定价 蒙特卡洛模型 欧式期权版本
+# MFE5130 2025 奇异期权定价 蒙特卡洛模型 
 
 #重新命名参数
 

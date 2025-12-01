@@ -3,7 +3,7 @@ import numpy as np
 
 from parameters import *
 
-# MFE5130 2025 奇异期权定价 二项式模型 欧式期权版本
+# MFE5130 2025 奇异期权定价 二项式模型 
 def binominal_priceX(style):
     #===生成二叉树列索引矩阵===
     mu = np.arange(M + 1)
